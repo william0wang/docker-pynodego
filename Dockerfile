@@ -17,9 +17,11 @@ ENV SHELL /bin/bash
 RUN mkdir -p /usr/local/lib/nodejs && \
 wget https://nodejs.org/dist/$VERSION/node-$VERSION-$DISTRO.tar.xz && \
 tar -xJvf node-v12.16.1-linux-x64.tar.xz -C /usr/local/lib/nodejs && \
-rm -f node-$VERSION-$DISTRO.tar.xz && \
-export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH && \
-npm config set registry https://registry.npm.taobao.org && \
+rm -f node-$VERSION-$DISTRO.tar.xz
+
+RUN export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
+
+RUN npm config set registry https://registry.npm.taobao.org && \
 npm i -g yarn && yarn config set registry https://registry.npm.taobao.org
 
 RUN mkdir -p /usr/local/work
