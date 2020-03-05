@@ -21,8 +21,8 @@ rm -f node-$VERSION-$DISTRO.tar.xz
 
 ENV PATH="/usr/local/lib/nodejs/node-$VERSION-$DISTRO:${PATH}"
 
-RUN npm config set registry https://registry.npm.taobao.org && \
-npm i -g yarn && yarn config set registry https://registry.npm.taobao.org
+# RUN npm config set registry https://registry.npm.taobao.org && \
+# npm i -g yarn && yarn config set registry https://registry.npm.taobao.org
 
 RUN mkdir -p /usr/local/work
 
