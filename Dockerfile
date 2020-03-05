@@ -1,5 +1,5 @@
 FROM python:3.7.6-alpine3.11
-MAINTAINER William Wang <william@10ln.com>
+LABEL maintainer="William Wang <william@10ln.com>"
 
 RUN echo "https://mirrors.tuna.tsinghua.edu.cn/alpine/v3.11/main" > /etc/apk/repositories && \
 echo "https://mirrors.tuna.tsinghua.edu.cn/alpine/v3.11/community" >> /etc/apk/repositories && \
