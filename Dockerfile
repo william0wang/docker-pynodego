@@ -10,6 +10,8 @@ ENV SHELL /bin/bash
 ENV VERSION=v12.16.1
 ENV DISTRO=linux-x64
 
+USER root
+
 RUN mkdir -p /usr/local/lib/nodejs && \
 wget https://nodejs.org/dist/$VERSION/node-$VERSION-$DISTRO.tar.xz && \
 tar -xJvf node-v12.16.1-linux-x64.tar.xz -C /usr/local/lib/nodejs && \
