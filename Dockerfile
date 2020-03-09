@@ -14,13 +14,13 @@ USER root
 
 RUN mkdir -p /usr/local/lib/nodejs && \
 wget https://nodejs.org/dist/$VERSION/node-$VERSION-$DISTRO.tar.xz && \
-tar -xJvf node-v12.16.1-linux-x64.tar.xz -C /usr/local/lib/nodejs && \
+tar -xJvf node-$VERSION-$DISTRO.tar.xz -C /usr/local/lib/nodejs && \
 rm -f node-$VERSION-$DISTRO.tar.xz
 
 ENV PATH="/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:${PATH}"
 
-RUN npm config set registry https://registry.npm.taobao.org && \
-npm i -g yarn && yarn config set registry https://registry.npm.taobao.org
+# RUN npm config set registry https://registry.npm.taobao.org && \
+# npm i -g yarn && yarn config set registry https://registry.npm.taobao.org
 
 RUN pip install frida
-RUN npm install -g frida
+# RUN npm install -g frida
