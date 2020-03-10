@@ -7,7 +7,7 @@ RUN apk add --update bash ca-certificates openssl curl tzdata git git-lfs openss
 autoconf automake build-base libtool nasm gcc zlib libxml2-dev libxslt-dev jpeg-dev zlib-dev && \
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
 echo "Asia/Shanghai" > /etc/timezone && \
-npm install -g npm && npm cache clean -f && npm install -g n && n stable
+npm install -g npm && npm cache clean -f && npm install -g n && n latest
 
 ENV PATH="$PATH"
 
