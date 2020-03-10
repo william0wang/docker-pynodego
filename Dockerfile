@@ -7,15 +7,15 @@ RUN apk add --update bash ca-certificates openssl curl tzdata git git-lfs openss
 autoconf automake build-base libtool nasm gcc zlib libxml2-dev libxslt-dev jpeg-dev zlib-dev && \
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
 echo "Asia/Shanghai" > /etc/timezone && \
-npm install -g npm && npm cache clean -f && npm install -g n && n latest
+npm install -g npm && npm cache clean -f && npm install -g n && n stable
 
 ENV PATH="$PATH"
 
 # RUN npm config set registry https://registry.npm.taobao.org && \
 # npm i -g yarn && yarn config set registry https://registry.npm.taobao.org
 
-RUN pip install frida
-RUN npm install frida
+RUN pip install frida && pip install frida-tools
+# RUN npm install frida
 
 ENV SHELL /bin/bash
 USER root
