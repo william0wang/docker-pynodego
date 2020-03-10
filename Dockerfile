@@ -15,7 +15,7 @@ ENV PATH="$PATH"
 # npm i -g yarn && yarn config set registry https://registry.npm.taobao.org
 
 RUN pip install frida
-# RUN npm install frida
+RUN npm install frida
 
 ENV SHELL /bin/bash
 USER root
