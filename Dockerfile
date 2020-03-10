@@ -1,13 +1,22 @@
-FROM python:3.7.6-alpine3.11
+FROM python:3.7.6-buster
 LABEL maintainer="William Wang <william@10ln.com>"
 
 USER root
 
-RUN apk add --update bash ca-certificates openssl curl tzdata git git-lfs openssh nodejs npm \
-autoconf automake build-base libtool nasm gcc zlib libxml2-dev libxslt-dev jpeg-dev zlib-dev && \
-ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-echo "Asia/Shanghai" > /etc/timezone && \
-npm install -g npm && npm cache clean -f && npm install -g n && n stable
+ENV ANDROID_HOME=/opt
+ENV PATH=$ANDROID_HOME/platform-tools:$PATH
+
+# RUN echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main contrib non-free" > /etc/apt/sources.list && \
+# echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-updates main contrib non-free" >> /etc/apt/sources.list && \
+# echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-backports main contrib non-free" >> /etc/apt/sources.list && \
+# echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main contrib non-free" >> /etc/apt/sources.list
+
+RUN apt-get update && apt-get upgrade -y
+
+#Install Frida
+RUN apt-get install -y unzip bash git nano gcc-multilib zlib1g-dev lib32z1-dev git git-lfs autotools-dev automake curl
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
+apt-get install -y nodejs
 
 ENV PATH="$PATH"
 
@@ -17,5 +26,8 @@ ENV PATH="$PATH"
 RUN pip install frida && pip install frida-tools
 # RUN npm install frida
 
+RUN mkdir -pm 0750 ~/.android $ANDROID_HOME && \
+curl -fsSL https://dl.google.com/android/repository/platform-tools-latest-linux.zip -o /tmp/adb.zip && \
+unzip /tmp/adb.zip -d $ANDROID_HOME && rm -f /tmp/adb.zip
+
 ENV SHELL /bin/bash
-USER root
