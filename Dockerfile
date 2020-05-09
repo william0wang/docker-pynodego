@@ -1,4 +1,4 @@
-FROM python:3.7.6-buster
+FROM python:3.7.7-buster
 LABEL maintainer="William Wang <william@10ln.com>"
 
 USER root
